@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORTHOMED E - Leading Orthopedic Implants Manufacturer</title>
+    <meta name="description" content="Orthomed E - Leading manufacturer of orthopedic implants including trauma, spine, hip, and maxillofacial solutions in the Middle East.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header with Logo */
+        .header {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #c41e3a 0%, #8b1538 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            position: relative;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .logo::after {
+            content: 'E';
+            position: absolute;
+            color: #f3405e;
+            font-weight: bold;
+            font-size: 0.9em;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .company-name {
+            font-size: 2em;
+            font-weight: 700;
+            color: #c41e3a;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: 2px solid transparent;
+        }
+
+       /* .nav-menu a:hover, .nav-menu a.active {
+            color: white;
+            background: linear-gradient(135deg, #ddc5c9, #8b1538);
+            border-color: #dd7b8b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
+        } */
+
+       /* .nav-menu a:hover, /*heder button style
+.nav-menu a:hover {
+    background: transparent; 
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(139, 21, 56, 0.3);
+}*/
+.nav-menu a:hover:not(.login-link) {
+    background: transparent; 
+    border-color: transparent;
+    box-shadow: 0 0 8px rgba(139, 21, 56, 0.5);
+}
+.nav-menu a.active:not(.login-link) {
+    background: transparent;
+    border-color: transparent;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(139, 21, 56, 0.5);
+}
+
+        .login-button {
+            background: linear-gradient(135deg, #c41e3a, #8b1538);
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3);
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(196, 30, 58, 0.4);
+            background: linear-gradient(135deg, #d63447, #c41e3a);
+        }
+           
+
+        
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: 0.3s;
+        }
+
+        /* Medical Slideshow */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: 40px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+            animation: slideIn 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px;
+            text-align: left;
+        }
+
+        .slide-overlay h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .slide-overlay p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+/*
+        /* Navigation arrows 
+        .prev, .next {
+      position: absolute;
+      top:70%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+    }
+*/
+.slider-container {
+  position: relative; 
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;   /*عشان يفضل ثابت */
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 10;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+
+   /* .prev {
+      left: 15px;
+    }
+
+    .next {
+      right: 15px;
+    }
+        
+*/
+        .next {
+            right: 0;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .prev:hover, .next:hover {
+            background: rgba(196, 30, 58, 1);
+            transform: scale(1.1);
+        } 
+
+        /* Slideshow dots */
+        .dots-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active, .dot:hover {
+            background-color: #c41e3a;
+            transform: scale(1.2);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            /*background: linear-gradient(135deg, #9c9797,0%, #9c9797 100%);*/
+            /* background: linear-gradient(to bottom, #b8d5f0, #ffffff);*/
+            background: #b3b2b2;
+            /*color: rgb(5, 5, 5);*/
+            padding: 150px 0 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 90px;
+        }
+        .hero-section p {
+  /*color: #222222; */
+  color: #ffffff
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 850px;
+  margin: 20px auto 0;
+}
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 { /* orthomed e*/
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            /*text-shadow: 2px 2px 4px #3b27273d;*/
+            color: #010101;
+            text-shadow: 2px 2px 4px hsla(0, 11%, 98%, 0.925);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .subtitle {   /* Subtitle style */
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            /*color: #f9f4f4;*/
+            color:  #010101;
+            font-weight: 600;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            max-width: 800px;
+              color: #222222;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button {  /*Partner With Us*/
+            display: inline-block;
+            background: linear-gradient(45deg, #ce0909, #ed1e1e);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            color: #c41e3a;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #c41e3a, #c41e3a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2em;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #c41e3a;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+        }
+
+        .product-content {
+            padding: 25px;
+        }
+
+        .product-card h3 {
+            color: #c41e3a;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-card p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* Quality Section */
+        .quality {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .quality-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quality h2 {
+            font-size: 2.5em;
+            color: #c41e3a;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .quality p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .certifications {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .cert-badge {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #c41e3a, #e82646);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(44, 90, 160, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+           /* background: linear-gradient(135deg, #9c9797,0%, #9c9797 100%);*/
+            /* background: linear-gradient(to bottom right, #f2f2f2, #e6f7ff);*/
+            background: #b3b2b2;
+            color: rgb(11, 11, 11);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .contact p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-actions {
+                gap: 10px;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .company-name {
+                font-size: 1.5em;
+            }
+            
+            .login-button {
+                padding: 8px 16px;
+                font-size: 0.85em;
+            }
+            
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .hero p {
+                font-size: 1.1em;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .certifications {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo"></div>
+                    <div>
+                        <div class="company-name">ORTHOMED E</div>
+                        <div class="tagline">Manufacturing Orthopedic Solutions</div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <nav class="nav-menu">
+                        <a href="#home" class="active">Home</a>
+                        <a href="#products">Products</a>
+                        <a href="#quality">Quality</a>
+                        <a href="#contact">Contact</a>
+                        <a href="#about">About</a>
+                    </nav>
+                    <a href="/login" class="login-button">
+                        👤 Login
+                    </a>
+                    <div class="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>ORTHOMED E</h1>
+                <div class="subtitle">Leading Orthopedic Implants Manufacturer in the Middle East</div>
+                <p>Orthomed-E is one of the top orthopedic implant companies in the Middle East. We are a Trauma, Spine, Hip, and Maxillofacial implants manufacturer and exporter with decades of experience. Among a large number of Orthopedic implant manufacturers in the Middle East, we enjoy wonderful market acceptance with a comprehensive portfolio of over a thousand products.</p>
+                
+                <!-- Medical Slideshow -->
+                <div class="slideshow-container">
+                    
+                    <div class="slider-container">   <!-- ده الكونتينر الأساسي -->
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="X-Ray Analysis">
+        <div class="slide-overlay">
+            <h3>Post-Surgical Assessment</h3>
+            <p>Advanced imaging to monitor implant integration and bone healing progress for optimal recovery outcomes.</p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Physical Therapy">
+        <div class="slide-overlay">
+            <h3>Orthopedic Recovery & Rehabilitation</h3>
+            <p>Comprehensive physical therapy and rehabilitation programs supporting full recovery after orthopedic implant surgery.</p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <img src="https://www.slideegg.com/image/multi-slide/72340/200806-orthopedics-01.png" alt="Spine Surgery">
+        <div class="slide-overlay">
+            <h3>Spinal Fusion & Trauma Care</h3>
+            <p>Complex spinal procedures and trauma reconstruction using our advanced spine implant systems and fixation devices.</p>
+        </div>
+    </div>
+
+    <!-- Navigation arrows برا السلايد -->
+    <button class="prev" onclick="changeSlide(-1)">❮</button>
+    <button class="next" onclick="changeSlide(1)">❯</button>
+
+</div>
+
+<!-- Slideshow dots -->
+<div class="dots-container">
+    <span class="dot active" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+</div>
+                
+                <a href="#contact" class="cta-button">Partner With Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our Implants</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                  <!--  <div class="feature-icon">🔬</div>-->
+                    <img src="https://drive.google.com/file/d/17hFn4bnHeJ3FIBDZDiGPlzaZfiouEYKc/view?usp=drive_link" alt="Precision Engineering" width="100%" >
+
+                    <h3>Precision Engineering</h3>
+                    <p>State-of-the-art manufacturing processes ensure every implant meets the highest standards of precision and quality for optimal patient outcomes.</p>
+                </div>
+                <div class="feature-card">
+                    <!--<div class="feature-icon">🏥</div> -->
+                    <img src="https://drive.google.com/file/d/1uEWMmSbloRoqM7EDOS_EeF3wTBYoZEoe/view?usp=drive_link" alt="Medical Grade Materials" width="100%" height="300px">
+                    <h3>Medical Grade Materials</h3>
+                    <p>Using only the finest biocompatible materials including titanium alloys and medical-grade polymers for superior durability and safety.</p>
+                </div>
+                <div class="feature-card">
+                   <!-- <div class="feature-icon">🔧</div> -->
+                    <img src="https://drive.google.com/file/d/1eZXcZW4QJBd2OgzuVlxImA_0fyCp1PPt/view?usp=drive_link" alt="Custom Solutions" width="100%" height="300px">
+                    <h3>Custom Solutions</h3>
+                    <p>Tailored implant solutions designed to meet specific patient anatomical requirements and surgical preferences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Product Portfolio</h2>
+            <div class="products-grid">
+                <div class="product-card">
+
+                  <!--   <div class="product-image"></div>-->
+
+                     <img src="https://drive.google.com/file/d/1s5HFmNcUJDp09aEDRx8RxLqr4mAA6Wie/view?usp=drive_link" alt="Trauma implants" width="100%" >
+
+                    <div class="product-content">
+                        <h3>Trauma Implants</h3>
+                        <p>Comprehensive range of trauma plates, screws, and nails for effective fracture fixation and trauma care management.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                   <!-- <div class="product-image">🏥</div>-->
+                    <img src="https://drive.google.com/file/d/1W2xrvCiQ9yPAFOnkUwnz71cnaMOdEnMt/view?usp=drive_link"alt="Spine Implants" width="100%" height="300px">
+                    <div class="product-content">
+                        <h3>Spine Implants</h3>
+                        <p>Advanced spinal fusion systems and instrumentation for comprehensive spine care and surgical solutions.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <!--<div class="product-image">⚡</div> -->
+                    <img src="https://drive.google.com/file/d/1WF6dGPRKvmS4YoAHaet5bdusO_qr3RnW/view?usp=drive_link" alt="Hip Implants" width="100%" height="300px">
+                    <div class="product-content">
+                        <h3>Hip Implants</h3>
+                        <p>High-quality hip replacement systems designed for longevity and optimal function in joint reconstruction.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <!--<div class="product-image">🦷</div>-->
+                    <img src="https://drive.google.com/file/d/1hB7LXtxcQLf290rWDEktzYJ3E3w-Hd8o/view?usp=drive_link" alt="Maxillofacial Implants" width="100%" height="250px">
+                    <div class="product-content">
+                        <h3>Maxillofacial Implants</h3>
+                        <p>Specialized implants for facial reconstruction and oral surgery applications with precision engineering.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Section -->
+    <section class="quality" id="quality">
+        <div class="container">
+            <div class="quality-content">
+                <h2>Decades of Excellence in Quality</h2>
+                <p>In a growing worldwide market, Orthomed-E Ltd. is gaining popularity as a quality Orthopedic products manufacturer committed to supply products that are of consistently good quality and safe.</p>
+                <p>Our comprehensive portfolio of Orthopedic Implants and Instruments numbers over a thousand products, each manufactured to the highest international standards with rigorous quality control procedures.</p>
+                
+                <div class="certifications">
+                    <div class="cert-badge">ISO 13485</div>
+                    <div class="cert-badge">CE Mark</div>
+                    <div class="cert-badge">GMP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Partner With Us</h2>
+            <p>Ready to enhance your surgical capabilities with our premium orthopedic implants?</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p>info@orthomed-e.com<br>sales@orthomed-e.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Phone</h3>
+                    <p>+971 (0) XX XXX XXXX<br>Middle East Operations</p>
+                </div>
+                <div class="contact-item">
+                    <h3>🏢 Headquarters</h3>
+                    <p>Middle East<br>Orthopedic Manufacturing Hub</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Slideshow functionality
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+        
+        function changeSlide(direction) {
+            slideIndex += direction;
+            if (slideIndex >= slides.length) slideIndex = 0;
+            if (slideIndex < 0) slideIndex = slides.length - 1;
+            showSlide(slideIndex);
+        }
+        
+        function currentSlide(index) {
+            slideIndex = index - 1;
+            showSlide(slideIndex);
+        }
+        
+        // Auto-play slideshow
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Navigation active state
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and product cards
+        document.querySelectorAll('.feature-card, .product-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
